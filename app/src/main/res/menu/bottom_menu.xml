@@ -3,6 +3,7 @@
     <group>
         <item
             android:id="@+id/home"
+            android:checked="true"
             android:enabled="true"
             android:icon="@drawable/ic_home"
             android:title="Home"

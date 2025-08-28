@@ -41,6 +41,7 @@ public class MainActivity extends BasicActivity {
         super.onCreate(savedInstanceState);
 
         ViewPager2 viewPager2 = (ViewPager2) content;
+        MiuixBottomNavigatorView navigatorView = findViewById(R.id.navigation);
 
         ArrayList<Fragment> fragments = new ArrayList<>();
         fragments.add(new HomeFragment());
@@ -65,22 +66,24 @@ public class MainActivity extends BasicActivity {
             public void onPageSelected(int position) {
                 switch (position) {
                     case 0 -> {
+                        navigatorView.check(R.id.home);
                         xAppBar.setTitle("Home");
                     }
                     case 1 -> {
+                        navigatorView.check(R.id.settings);
                         xAppBar.setTitle("Settings");
                     }
                     case 2 -> {
+                        navigatorView.check(R.id.about);
                         xAppBar.setTitle("About");
                     }
                 }
             }
         });
 
-        MiuixBottomNavigatorView navigatorView = findViewById(R.id.navigation);
         navigatorView.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MiuixBottomNavigatorView.MenuInfo item) {
+            public boolean onNavigationItemSelected(@NonNull MiuixBottomNavigatorView.MenuInfo item, boolean fromUser) {
                 if (item.getId() == R.id.home) {
                     viewPager2.setCurrentItem(0);
                 } else if (item.getId() == R.id.settings) {
