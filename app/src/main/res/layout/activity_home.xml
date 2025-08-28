@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:scrollbars="none">
 
-        <LinearLayout
+        <com.hchen.himiuix.fill.MiuixFillView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -390,6 +390,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:dividerTitle="Miuix Checkbox Reverse Layout">
+
                 <com.hchen.himiuix.MiuixCheckBoxView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -429,8 +430,7 @@
             <com.hchen.himiuix.MiuixViewGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:dividerTitle="Miuix Radio Reverse Layout"
-                app:marginBottomEnabled="true">
+                app:dividerTitle="Miuix Radio Reverse Layout">
 
                 <com.hchen.himiuix.MiuixRadioGroup
                     android:layout_width="match_parent"
@@ -467,6 +467,6 @@
                         app:reverseLayout="true" />
                 </com.hchen.himiuix.MiuixRadioGroup>
             </com.hchen.himiuix.MiuixViewGroup>
-        </LinearLayout>
+        </com.hchen.himiuix.fill.MiuixFillView>
     </androidx.core.widget.NestedScrollView>
 </com.hchen.himiuix.springback.SpringBackLayout>

@@ -12,13 +12,14 @@
 package com.hchen.himiuixdemo;
 
 import android.os.Bundle;
-import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.hchen.himiuix.MiuixBottomNavigatorView;
+import com.hchen.himiuix.callback.OnItemSelectedListener;
 import com.hchen.himiuixdemo.fragment.AboutFragment;
 import com.hchen.himiuixdemo.fragment.HomeFragment;
 import com.hchen.himiuixdemo.fragment.SettingsFragment;
@@ -40,7 +41,6 @@ public class MainActivity extends BasicActivity {
         super.onCreate(savedInstanceState);
 
         ViewPager2 viewPager2 = (ViewPager2) content;
-        RadioGroup radioGroup = findViewById(R.id.radio_group);
 
         ArrayList<Fragment> fragments = new ArrayList<>();
         fragments.add(new HomeFragment());
@@ -66,34 +66,29 @@ public class MainActivity extends BasicActivity {
                 switch (position) {
                     case 0 -> {
                         xAppBar.setTitle("Home");
-                        radioGroup.check(R.id.home);
                     }
                     case 1 -> {
                         xAppBar.setTitle("Settings");
-                        radioGroup.check(R.id.settings);
                     }
                     case 2 -> {
                         xAppBar.setTitle("About");
-                        radioGroup.check(R.id.about);
                     }
                 }
             }
         });
 
-        radioGroup.post(() -> radioGroupHeight = radioGroup.getHeight());
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        MiuixBottomNavigatorView navigatorView = findViewById(R.id.navigation);
+        navigatorView.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
-            public void onCheckedChanged(@NonNull RadioGroup group, int checkedId) {
-                if (checkedId == R.id.home) {
-                    xAppBar.setTitle("Home");
+            public boolean onNavigationItemSelected(@NonNull MiuixBottomNavigatorView.MenuInfo item) {
+                if (item.getId() == R.id.home) {
                     viewPager2.setCurrentItem(0);
-                } else if (checkedId == R.id.settings) {
-                    xAppBar.setTitle("Settings");
+                } else if (item.getId() == R.id.settings) {
                     viewPager2.setCurrentItem(1);
-                } else if (checkedId == R.id.about) {
-                    xAppBar.setTitle("About");
+                } else if (item.getId() == R.id.about) {
                     viewPager2.setCurrentItem(2);
                 }
+                return true;
             }
         });
     }
